@@ -28,7 +28,8 @@ h1 {
 
 .avatar {
   width: 100%;
-  display: block;
+  aspect-ratio: 20/9;
+  object-fit: cover;
 }
 
 .data {
