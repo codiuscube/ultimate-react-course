@@ -68,10 +68,31 @@ function Header() {
 }
 
 function Menu() {
+  const pizzas = pizzaData;
+  // const pizzas = [];
+  const numPizzas = pizzas.length;
+
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <Pizza
+
+      {numPizzas > 0 ? (
+        <>
+          <p>
+            Authentic Italian cuisine. 6 creative dishes to choose from. All
+            from our stone oven, all organic, all delicious.
+          </p>
+          <ul className="pizzas">
+            {pizzas.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p>We're still working on our menu, please come back later :)</p>
+      )}
+
+      {/* <Pizza
         name="Pizza Spinaci"
         ingredients="Tomato, mozarella, spinach, and ricotta cheese"
         photoName="pizzas/spinaci.jpg"
@@ -82,45 +103,77 @@ function Menu() {
         ingredients="Tomato, mushroos"
         photoName="pizzas/funghi.jpg"
         price={12}
-      />
+      /> */}
     </main>
   );
 }
 
-function Pizza(props) {
-  console.log(props);
+function Pizza({ pizzaObj }) {
+  console.log(pizzaObj);
+
+  // if (pizzaObj.soldOut) return null;
   return (
-    <div className="pizza">
-      <img src={props.photoName} alt={props.name} />
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
+      <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingredients}</p>
-        <span>{props.price + 3}</span>
+        <h3>{pizzaObj.name}</h3>
+        <p>{pizzaObj.ingredients}</p>
+
+        {/* {pizzaObj.soldOut ? (
+          <span>SOLD OUT</span>
+        ) : (
+          <span>{pizzaObj.price}</span>
+        )} */}
+
+        <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 11;
+  const openHour = 8;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
 
   // if (hour >= openHour && hour <= closeHour) alert("We're currently open!");
   // else alert("Sorry we're closed");
-
+  // if (!isOpen)
+  //   return (
+  //     <div className="order">
+  //       <p>
+  //         We're happy to welcome you between {openHour}:00 and {closeHour}:00
+  //       </p>
+  //     </div>
+  //   );
   return (
     <footer className="footer">
+      {isOpen ? (
+        <Order closeHour={closeHour} openHour={openHour} />
+      ) : (
+        `We're happy to welcome you between ${openHour}:00 and ${closeHour}:00.`
+      )}
+    </footer>
+  );
+}
+
+function Order({ closeHour, openHour }) {
+  return (
+    <div className="order">
       {"It's " +
         new Date().toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
         }) +
-        ". "}
-      {isOpen ? "We're currently open!" : "Sorry, we're closed!"}
-    </footer>
+        ". We're open from " +
+        openHour +
+        ":00 to " +
+        closeHour +
+        ":00. Come visit us or order online."}
+      <button className="btn">Order</button>
+    </div>
   );
 }
 
