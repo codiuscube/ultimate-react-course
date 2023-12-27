@@ -14,6 +14,34 @@ function App() {
   );
 }
 
+const skills = [
+  {
+    skill: "Surfing",
+    level: "Advanced",
+    color: "#2662EA",
+  },
+  {
+    skill: "Dancing",
+    level: "Beginner",
+    color: "#EFD81D",
+  },
+  {
+    skill: "Writing",
+    level: "Beginner",
+    color: "#C3DCAF",
+  },
+  {
+    skill: "Cooking",
+    level: "Intermediate",
+    color: "#60DAFB",
+  },
+  {
+    skill: "Gaming",
+    level: "Intermediate",
+    color: "#19AAFC",
+  },
+];
+
 function Avatar() {
   return <img className="avatar" src="avatar.jpeg" alt="Cody Iddings" />;
 }
@@ -32,29 +60,48 @@ function Intro() {
 }
 
 function SkillList() {
+  const skillTree = skills;
   return (
     <div className="skill-list">
-      <Skill name="Surfing 🏄" />
-      <Skill name="Dancing 💃" />
-      <Skill name="Cooking 🍳" />
-      <Skill name="Writing 🖋️" />
-      <Skill name="Gaming 🎮" />
-      <Skill name="Daddy 🤪" />
+      {skills.map((skill) => (
+        <Skill
+          // skillObj={skill}
+          skill={skill.skill}
+          color={skill.color}
+          level={skill.level}
+          key={skill.skill}
+        />
+      ))}
     </div>
   );
 }
 
-function Skill(props) {
-  console.log(props);
-  const bgColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-  const textColor =
-    parseInt(bgColor.replace("#", ""), 16) > 0xffffff / 2 ? "#000" : "#fff";
+function Skill({ skill, color, level }) {
+  console.log({ skill, color, level });
+  // const levelEmojis = {
+  //   Beginner: "🌱", // Emoji for Beginner
+  //   Intermediate: "🔥", // Emoji for Intermediate
+  //   Advanced: "💪", // Emoji for Advanced
+  // };
+  // const textColor =
+  //   parseInt(bgColor.replace("#", ""), 16) > 0xffffff / 2 ? "#000" : "#fff";
   return (
-    <div
-      className="skill"
-      style={{ backgroundColor: bgColor, color: textColor }}
-    >
-      <p>{props.name}</p>
+    <div className="skill" style={{ backgroundColor: color }}>
+      <p>{skill}</p>
+      <span>
+        {level === "Beginner" && "🌱"}
+        {level === "Intermediate" && "🔥"}
+        {level === "Advanced" && "💪"}
+      </span>
+      {/* <span>
+        {level === "Beginner"
+          ? "🌱"
+          : level === "Intermediate"
+          ? "🔥"
+          : level === "Advanced"
+          ? "💪"
+          : ""}
+      </span> */}
     </div>
   );
 }
