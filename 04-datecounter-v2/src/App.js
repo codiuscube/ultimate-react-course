@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./styles.css";
+import { isVisible } from "@testing-library/user-event/dist/utils";
 
 export default function App() {
   return (
@@ -37,14 +38,6 @@ function Counter() {
     `${count} days from today is ${futureDate}`,
   ];
 
-  function handlePreviousStep() {
-    setStep((s) => s - 1);
-  }
-
-  function handleNextStep() {
-    setStep((s) => s + 1);
-  }
-
   function handlePreviousCount() {
     setCount((c) => c - step);
   }
@@ -53,16 +46,30 @@ function Counter() {
     setCount((c) => c + step);
   }
 
+  function handleReset() {
+    setStep(1);
+    setCount(0);
+  }
+
   return (
     <div className="counter">
       <div>
-        <button onClick={handlePreviousStep}>&minus;</button>
-        <span>Step: {step}</span>
-        <button onClick={handleNextStep}>&#43;</button>
+        <input
+          type="range"
+          min="0"
+          max="10"
+          value={step}
+          onChange={(e) => setStep(Number(e.target.value))}
+        />
+        <span>{step}</span>
       </div>
       <div>
         <button onClick={handlePreviousCount}>&minus;</button>
-        <span>Count: {count}</span>
+        <input
+          type="text"
+          value={count}
+          onChange={(e) => setCount(Number(e.target.value))}
+        ></input>
         <button onClick={handleNextCount}>&#43;</button>
       </div>
       <div className="counter">
@@ -70,6 +77,17 @@ function Counter() {
         {count === 0 && <div>{messages[1]}</div>}
         {count > 0 && <div>{messages[2]}</div>}
       </div>
+      {count !== 0 || step !== 1 ? (
+        <div>
+          <button onClick={handleReset}>Reset</button>
+        </div>
+      ) : (
+        <div>
+          <button onClick={handleReset} disabled="true">
+            Reset
+          </button>
+        </div>
+      )}
     </div>
   );
 }
