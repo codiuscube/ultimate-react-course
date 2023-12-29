@@ -1,0 +1,37 @@
+.page {
+  padding-top: 5rem;
+  padding-left: 2rem;
+}
+
+.divider {
+  padding-bottom: 1rem;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 1.5rem;
+  color: #343a40;
+  line-height: 1.5;
+}
+
+input,
+select {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+}
+
+button {
+  height: 2rem;
+  border-radius: 1rem;
+  border-width: 0;
+  font-weight: 900;
+  padding: 0 1rem 0 1rem;
+  background-color: black;
+  color: white;
+}
+
+button:hover {
+  background-color: #343a40;
+  color: white;
+}
