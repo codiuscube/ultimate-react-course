@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { act } from "react-dom/test-utils";
 
 const content = [
   {
@@ -42,7 +43,10 @@ function Tabbed({ content }) {
       </div>
 
       {activeTab <= 2 ? (
-        <TabContent item={content.at(activeTab)} />
+        <TabContent
+          item={content.at(activeTab)}
+          key={content.at(activeTab).summary}
+        />
       ) : (
         <DifferentContent />
       )}
