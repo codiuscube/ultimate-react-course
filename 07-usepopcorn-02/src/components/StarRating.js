@@ -11,13 +11,6 @@ const starContainerStyle = {
   display: "flex",
 };
 
-const starStyle = {
-  width: "48px",
-  height: "48px",
-  display: "block",
-  cursor: "pointer",
-};
-
 StarRating.propTypes = {
   maxRating: PropTypes.number,
   defaultRating: PropTypes.string,
@@ -43,7 +36,7 @@ export default function StarRating({
     lineHeight: "1",
     margin: "0",
     color,
-    fontSize: `${size / 1.5}px`,
+    fontSize: { size },
   };
 
   function handleRating(rating) {
@@ -76,6 +69,13 @@ export default function StarRating({
 }
 
 function Star({ onRate, full, onHoverIn, onHoverOut, color, size }) {
+  const starStyle = {
+    width: `${size}px`,
+    height: `${size}px`,
+    display: "block",
+    cursor: "pointer",
+  };
+
   return (
     <span
       role="button"
