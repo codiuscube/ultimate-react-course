@@ -1,0 +1,76 @@
+.App {
+  text-align: center;
+  background-color: #1e1e1e; /* Slightly lighter dark background for the app container */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 300px; /* Fixed width */
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #121212; /* Dark background */
+  color: #fff; /* Light text */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  margin: 0;
+}
+
+input[type="text"] {
+  background-color: transparent; /* Invisible background */
+  border: none; /* No border */
+  border-bottom: 0px solid #333; /* Underline style */
+  color: #fff; /* Light text */
+  font-size: 48px; /* Significantly larger font size */
+  line-height: 1; /* Adjust line height for vertical centering */
+  text-align: center; /* Center text */
+  display: inline-block; /* Inline display */
+  margin: 10px 0; /* Adjusted margin */
+  padding: 10px 0; /* Adjusted padding */
+  box-sizing: border-box; /* Include padding and border in the element's width */
+  width: 88%;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-bottom: 0px solid #333; /* Maintain underline on focus */
+  width: 88%;
+}
+
+input[type="text"]:not(:focus) {
+  border-bottom: none; /* No underline when not focused */
+  width: 88%;
+}
+
+select {
+  background-color: #333; /* Dark background for dropdowns */
+  color: #fff; /* Light text */
+  border: 0px solid #6a6a6a; /* Styled border */
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+p {
+  font-size: 20px;
+  margin-top: 20px;
+  color: #fff; /* Light text */
+  font-family: "Arial", sans-serif;
+}
+
+button {
+  background-color: #111; /* Green background */
+  color: white; /* White text */
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer; /* Change cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for the background color */
+}
+
+button:hover {
+  background-color: #333; /* Darker green on hover */
+}
