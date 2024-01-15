@@ -66,7 +66,7 @@ export default function App() {
         }
       }
 
-      if (fromCurrency === toCurrency) return setConverted(query).toFixed(2);
+      if (fromCurrency === toCurrency) return setConverted(query);
       fetchCurrencyExchangeRate();
     },
     [query, fromCurrency, toCurrency]
